@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nenhum de Nós Saiu — Material do Mestre</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Share+Tech+Mono&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --amarelo: #C8A84B;
+    --amarelo-dim: #8a7030;
+    --fundo: #111009;
+    --fundo2: #1a1810;
+    --fundo3: #222018;
+    --borda: #3a3520;
+    --texto: #c0b090;
+    --texto-dim: #7a6e50;
+    --branco: #e8dfc8;
+    --verde-perigo: #2a4a2a;
+    --verde-borda: #4a8a4a;
+    --amarelo-perigo: #4a3a10;
+    --amarelo-borda: #c8a030;
+    --vermelho-perigo: #3a1010;
+    --vermelho-borda: #9a3030;
+    --azul-info: #102030;
+    --azul-borda: #2060a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--fundo);
+    color: var(--texto);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(17,16,9,0.97);
+    border-bottom: 1px solid var(--borda);
+    padding: 10px 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  nav a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--amarelo-dim);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--amarelo); }
+
+  /* ── LAYOUT ──────────────────────────────────── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 60px 40px; }
+
+  /* ── CAPA ────────────────────────────────────── */
+  .capa {
+    text-align: center;
+    padding: 80px 40px 60px;
+    border-bottom: 1px solid var(--borda);
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .capa::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(200,168,75,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .capa-titulo {
+    font-family: 'Special Elite', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    color: var(--amarelo);
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-shadow: 0 0 40px rgba(200,168,75,0.3);
+  }
+  .capa-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--texto-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .capa-quote {
+    font-style: italic;
+    font-size: 18px;
+    color: var(--texto-dim);
+    max-width: 500px;
+    margin: 0 auto;
+    border-left: 2px solid var(--amarelo-dim);
+    padding-left: 20px;
+    text-align: left;
+  }
+
+  /* ── SEÇÕES ──────────────────────────────────── */
+  .secao { margin-bottom: 80px; scroll-margin-top: 60px; }
+
+  h1 {
+    font-family: 'Special Elite', serif;
+    font-size: 32px;
+    color: var(--amarelo);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--borda);
+  }
+  h2 {
+    font-family: 'Special Elite', serif;
+    font-size: 22px;
+    color: var(--branco);
+    margin: 40px 0 12px;
+    letter-spacing: 0.03em;
+  }
+  h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--amarelo);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 28px 0 10px;
+  }
+  p { margin-bottom: 12px; font-size: 17px; }
+  .subtitulo-secao {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--texto-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  /* ── TABELAS ─────────────────────────────────── */
+  .tabela-wrap { overflow-x: auto; margin: 16px 0 32px; border-radius: 4px; border: 1px solid var(--borda); }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  thead th {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 14px;
+    text-align: left;
+    background: var(--fundo3);
+    color: var(--amarelo);
+    border-bottom: 1px solid var(--borda);
+  }
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--borda);
+    color: var(--texto);
+    line-height: 1.5;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: rgba(200,168,75,0.03); }
+
+  .td-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: var(--amarelo-dim);
+    white-space: nowrap;
+    width: 48px;
+  }
+  .td-nome { font-weight: 600; color: var(--branco); }
+
+  /* ── NÍVEIS DE PERIGO ────────────────────────── */
+  .nivel-badge {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .nivel-verde { background: var(--verde-perigo); color: #6abf6a; border: 1px solid var(--verde-borda); }
+  .nivel-amarelo { background: var(--amarelo-perigo); color: #c8a030; border: 1px solid var(--amarelo-borda); }
+  .nivel-vermelho { background: var(--vermelho-perigo); color: #c05050; border: 1px solid var(--vermelho-borda); }
+
+  .tabela-verde thead th { color: #6abf6a; }
+  .tabela-verde .td-num { color: #4a9a4a; }
+  .tabela-amarelo thead th { color: #c8a030; }
+  .tabela-amarelo .td-num { color: #8a7020; }
+  .tabela-vermelho thead th { color: #c05050; }
+  .tabela-vermelho .td-num { color: #8a3030; }
+
+  /* ── CAIXAS ──────────────────────────────────── */
+  .caixa {
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    background: var(--fundo2);
+  }
+  .caixa-titulo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 12px;
+  }
+  .caixa ul { list-style: none; padding: 0; }
+  .caixa li {
+    padding: 5px 0 5px 18px;
+    position: relative;
+    font-size: 16px;
+    color: var(--texto);
+    border-bottom: 1px solid rgba(58,53,32,0.4);
+  }
+  .caixa li:last-child { border-bottom: none; }
+  .caixa li::before { content: '›'; position: absolute; left: 0; color: var(--amarelo-dim); }
+
+  .caixa-alerta { border-color: var(--amarelo-borda); background: var(--amarelo-perigo); }
+  .caixa-alerta .caixa-titulo { color: #c8a030; }
+
+  .caixa-perigo { border-color: var(--vermelho-borda); background: var(--vermelho-perigo); }
+  .caixa-perigo .caixa-titulo { color: #c05050; }
+
+  .caixa-safe { border-color: var(--verde-borda); background: var(--verde-perigo); }
+  .caixa-safe .caixa-titulo { color: #6abf6a; }
+
+  /* ── ENVELOPE ────────────────────────────────── */
+  .envelope {
+    border: 1px dashed var(--borda);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 12px 0;
+    background: var(--fundo);
+    position: relative;
+  }
+  .envelope::before {
+    content: '✉';
+    position: absolute;
+    top: 14px; right: 16px;
+    color: var(--borda);
+    font-size: 16px;
+  }
+  .envelope-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--texto-dim);
+    margin-bottom: 8px;
+  }
+  .envelope p { font-style: italic; color: var(--texto); margin-bottom: 6px; font-size: 16px; }
+  .envelope .nota { font-size: 13px; color: var(--texto-dim); font-style: normal; margin-top: 8px; }
+
+  /* ── GRID ────────────────────────────────────── */
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+  @media (max-width: 720px) { .grid-3 { grid-template-columns: 1fr; } }
+
+  .card {
+    border: 1px solid var(--borda);
+    border-radius: 4px;
+    padding: 16px;
+    background: var(--fundo2);
+  }
+  .card-titulo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amarelo);
+    margin-bottom: 8px;
+  }
+  .card p { font-size: 14px; margin-bottom: 6px; }
+
+  /* ── SEPARADOR ───────────────────────────────── */
+  .sep {
+    border: none;
+    border-top: 1px solid var(--borda);
+    margin: 48px 0;
+  }
+
+  /* ── SESSÃO TIMELINE ─────────────────────────── */
+  .timeline { display: flex; gap: 0; margin: 24px 0; }
+  .timeline-item {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid var(--borda);
+    border-right: none;
+    background: var(--fundo2);
+    position: relative;
+  }
+  .timeline-item:last-child { border-right: 1px solid var(--borda); }
+  .timeline-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--texto-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .timeline-titulo {
+    font-family: 'Special Elite', serif;
+    font-size: 15px;
+    color: var(--amarelo);
+    margin-bottom: 6px;
+  }
+  .timeline-desc { font-size: 13px; color: var(--texto-dim); line-height: 1.4; }
+  @media (max-width: 720px) { .timeline { flex-direction: column; } .timeline-item { border-right: 1px solid var(--borda); border-bottom: none; } .timeline-item:last-child { border-bottom: 1px solid var(--borda); } }
+
+  /* ── PRINT ───────────────────────────────────── */
+  @media print {
+    nav { display: none; }
+    body { background: white; color: black; }
+    .capa-titulo, h1, h2 { color: black; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#salas">Tabelas de Salas</a>
+  <a href="#criaturas">Criaturas & Aliados</a>
+  <a href="#itens">Itens de Referência</a>
+  <a href="#memorias">Memórias Falsas</a>
+  <a href="#sessoes">Integração por Sessão</a>
+  <a href="#controle">Controle do Mestre</a>
+</nav>
+
+<div class="container">
+
+  <!-- CAPA -->
+  <div class="capa">
+    <div class="capa-titulo">NENHUM DE NÓS SAIU</div>
+    <div class="capa-sub">Call of Cthulhu 7ª Ed. · Backrooms · Campanha de 4 Sessões · Material do Mestre</div>
+    <div class="capa-quote">"O lugar aprende com você. O problema é que você também aprende com ele."</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- TABELAS DE SALAS -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="salas">
+    <h1>Tabelas de Geração de Salas</h1>
+    <p class="subtitulo-secao">3 níveis de perigo · Tabelas A (tipo) + B (conteúdo) + C (anomalia) por nível</p>
+
+    <p>Role separadamente nas três sub-tabelas do nível escolhido e combine os resultados. Para sessões iniciais, prefira o Nível 1. Introduza o Nível 2 a partir da sessão 2 e reserve o Nível 3 para momentos de clímax.</p>
+
+    <div class="caixa">
+      <div class="caixa-titulo">Como usar os três níveis</div>
+      <ul>
+        <li><strong style="color:#6abf6a">Nível 1 — Liminar:</strong> sem ameaça direta. O horror é atmosférico. Perda de Orientação, não de Sanidade.</li>
+        <li><strong style="color:#c8a030">Nível 2 — Comprometido:</strong> evidência de presença ativa. Algo esteve aqui. Pode ainda estar. Perda de Sanidade possível.</li>
+        <li><strong style="color:#c05050">Nível 3 — Hostil:</strong> encontro iminente ou em curso. Fuga, esconderijo ou negociação. Nunca combate frontal.</li>
+      </ul>
+    </div>
+
+    <!-- ── NÍVEL 1 ── -->
+    <h2>Nível 1 — Liminar</h2>
+    <span class="nivel-badge nivel-verde">● Sem ameaça direta</span>
+
+    <h3>Tabela 1-A · Tipo de Sala (1d20)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-verde">
+        <thead><tr><th>d20</th><th>Sala</th><th>Detalhe sensorial</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Corredor de shopping fechado</td><td>Vitrines com manequins sem cabeça. Lojas sem nome. Muzak distante sem fonte.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Sala de espera de hospital</td><td>Cadeiras de plástico laranja enfileiradas. Revistas sem data. Luz de néon piscando em ritmo de pulso.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Escritório de plano aberto</td><td>Mesas com trabalho a meio. Cafés frios nas canecas. Relógio parado em 14h47.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Corredor escolar à noite</td><td>Armários numerados sem sequência lógica. Cartazes desbotados. Cheiro de giz e desinfetante.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Sala de estar genérica</td><td>Móveis de catálogo. Quadros sem foto. Televisão ligada em estática. Tapete de pelos sintéticos.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Estacionamento coberto vazio</td><td>Pintura de vaga desbotada. Eco de cada passo. Um único carro sem placa no canto.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Piscina coberta sem água</td><td>Azulejo azul desbotado. Escada de metal enferrujada. Fundo com marcas de algo que foi arrastado.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Sala de jantar de restaurante</td><td>Mesas postas para um número impossível de pessoas. Velas apagadas mas com cera recente.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Biblioteca pública vazia</td><td>Prateleiras com livros sem título nas lombadas. Fichário de madeira com gavetas travadas.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Corredor de hotel</td><td>Carpete com padrão geométrico desorientador. Portas numeradas sem sequência. Carrinho de limpeza abandonado.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Ginásio esportivo</td><td>Quadra marcada para um esporte que não existe. Arquibancadas vazias mas com pipoca no chão.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Sala de cinema sem tela</td><td>Poltronas vermelhas em fileiras. Projetor ligado mas sem filme. Cheiro de milho velho.</td></tr>
+          <tr><td class="td-num">13</td><td class="td-nome">Cozinha industrial</td><td>Equipamentos de inox sem marca. Panelas no fogo — fogo apagado, panelas ainda quentes.</td></tr>
+          <tr><td class="td-num">14</td><td class="td-nome">Vestiário sem janelas</td><td>Armários com combinações que funcionam. Dentro: roupas de alguém que as deixou com intenção de voltar.</td></tr>
+          <tr><td class="td-num">15</td><td class="td-nome">Sala de espera de aeroporto</td><td>Painel de voos com destinos em branco. Cadeiras com bagagem abandonada. Anúncio de voo em loop.</td></tr>
+          <tr><td class="td-num">16</td><td class="td-nome">Lavanderia de apartamento</td><td>Máquinas paradas no meio do ciclo. Roupa úmida dentro. Cheiro de amaciante e mofo.</td></tr>
+          <tr><td class="td-num">17</td><td class="td-nome">Corredor de museu</td><td>Pedestais com placas descritivas mas sem objetos. Iluminação de vitrine apontando para o vazio.</td></tr>
+          <tr><td class="td-num">18</td><td class="td-nome">Sala de reunião corporativa</td><td>Quadro branco com apresentação pela metade. Copos d'água. Cadeiras afastadas como se alguém levantou rápido.</td></tr>
+          <tr><td class="td-num">19</td><td class="td-nome">Jardim interno de shopping</td><td>Plantas artificiais com poeira. Fonte seca. Banco de praça sob luz fluorescente.</td></tr>
+          <tr><td class="td-num">20</td><td class="td-nome">Corredor infinito com curva</td><td>Idêntico em ambas as direções. A curva nunca chega. Passos ecoam antes de acontecer.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 1-B · Conteúdo encontrado (1d12)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-verde">
+        <thead><tr><th>d12</th><th>Conteúdo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Nada</td><td>Absolutamente nada além do mobiliário. A ausência é o evento.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Alimento enlatado</td><td>Data de validade impossível — ano que ainda não chegou ou há décadas passado. Em bom estado.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Diário manuscrito</td><td>Entradas metódicas que se tornam ilegíveis nas últimas páginas. A caligrafia muda de direção.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Mapa desenhado à mão</td><td>Parcialmente correto, parcialmente impossível. Uma sala marcada com "NÃO ENTRAR" sem explicação.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Rádio ou aparelho eletrônico</td><td>Funciona parcialmente. Capta frequências com vozes — algumas reconhecíveis, algumas impossíveis.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Foto ou documento pessoal</td><td>Pertenceu a alguém. Talvez a um dos personagens — mas eles não perderam isso.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Suprimento incompleto</td><td>Lanterna sem pilha. Faca sem cabo. Mochila com tudo exceto comida.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Rastros no pó</td><td>Pegadas que começam no meio da sala. Marcas de arrastar que terminam na parede.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Mensagem na parede</td><td>Arranhada, não escrita. Pode ser contagem de dias — ou outra coisa.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Porta para sala conhecida</td><td>Leva a algum lugar já explorado — mas levemente diferente. Um objeto mudou de lugar.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Objeto de personagem</td><td>Pertence a um dos personagens. Que não o perdeu. O mestre escolhe qual linha referencia.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Pilha de roupas dobradas</td><td>Dobradas com cuidado excessivo. De tamanho e estilo variados. Ainda com cheiro de pessoa.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 1-C · Anomalia (1d10)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-verde">
+        <thead><tr><th>d10</th><th>Anomalia</th><th>Efeito mecânico</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Tempo subjetivo alterado</td><td>Saem mais cansados do que deveriam. Perdem 1d4 horas sem perceber.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Um sentido ausente</td><td>Sem cheiro, sem eco ou sem sombras dentro da sala. Nenhum personagem sente a mesma ausência.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Sala menor por dentro</td><td>Do lado de fora parecia maior. A geometria não fecha. Ninguém consegue explicar.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Algo muda sem ser visto</td><td>Quando ninguém olha diretamente, algo muda de posição. Nunca durante observação direta.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Déjà vu preditivo</td><td>Um personagem (aleatório) descreve o próximo objeto encontrado antes de encontrá-lo.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Porta de saída diferente</td><td>Saem por onde entraram mas chegam a um lugar diferente. A geometria cedeu.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Temperatura em ponto específico</td><td>Um ponto exato da sala está significativamente mais frio. Não há explicação. Algo ficou aqui.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Perfeição perturbadora</td><td>Nada errado. Tudo limpo, ordenado, intacto. Isso é o mais aterrorizante. Perda de 1 de Orientação.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Eco atrasado</td><td>Sons acontecem antes dos eventos que os causam. O passo ecoa antes do pé tocar o chão.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Sem anomalia</td><td>A sala é exatamente o que parece. Isso por si só gera desconfiança.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="sep">
+
+    <!-- ── NÍVEL 2 ── -->
+    <h2>Nível 2 — Comprometido</h2>
+    <span class="nivel-badge nivel-amarelo">▲ Presença ativa detectada</span>
+
+    <h3>Tabela 2-A · Tipo de Sala (1d20)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-amarelo">
+        <thead><tr><th>d20</th><th>Sala</th><th>Detalhe sensorial</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Depósito com prateleiras até o teto</td><td>Caixas sem rótulo. Algumas abertas — conteúdo consumido por dentro. Marcas de garras na madeira.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Banheiro sem espelhos</td><td>Os ganchos dos espelhos ainda existem. Manchas escuras no cimento onde os espelhos ficavam.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Sala de servidores abandonada</td><td>Equipamentos que não existem mais. LEDs piscando em padrão. Calor excessivo sem ventilação.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Corredor com portas trancadas</td><td>Todas trancadas menos uma. Atrás da aberta: outra porta. Também trancada. Exceto uma.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Quarto de hotel perturbado</td><td>Cama desfeita de um lado só. Janela inexistente mas com cortinas. Televisão ligada em canal morto.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Sala de segurança</td><td>Monitores mostrando salas que os personagens ainda não encontraram. Um monitor mostra esta sala.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Corredor com marcações de obra</td><td>Fita zebrada. Buracos no teto sem explicação. A obra nunca aconteceu ou nunca terminou.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Arquivo morto</td><td>Gavetas abertas, papéis no chão. Arquivos com nomes reais — talvez dos personagens. Talvez de outros.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Academia com equipamentos enferrujados</td><td>Enferrujados mas limpos. Alguém os usa. O chão de borracha tem marcas de muito uso recente.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Corredor de hospital fechado</td><td>Macas com cintas soltas. Prontuários em branco. Cheiro de éter sem origem. Luz de emergência vermelha.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Sala de aula com quadro cheio</td><td>Equações sem sentido ou mapas impossíveis. Carteiras arranjadas em círculo, não em fileiras.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Túnel de manutenção</td><td>Tubulações com sons orgânicos. Passagem estreita. Marcas de algo que rastejou por muito tempo.</td></tr>
+          <tr><td class="td-num">13</td><td class="td-nome">Sala de espetáculos vazia</td><td>Palco iluminado mas sem atores. Roteiro abandonado na coxia. O texto é sobre este grupo, neste momento.</td></tr>
+          <tr><td class="td-num">14</td><td class="td-nome">Loja de conveniência</td><td>Produtos de marcas inexistentes. Preços em moeda desconhecida. Caixa registradora aberta com dinheiro de país nenhum.</td></tr>
+          <tr><td class="td-num">15</td><td class="td-nome">Sala de descanso de funcionários</td><td>Fotos de funcionários na parede — alguns reconhecíveis como NPCs já encontrados. Ou como os personagens.</td></tr>
+          <tr><td class="td-num">16</td><td class="td-nome">Escada entre andares idênticos</td><td>Cada andar é igual ao anterior. O número do andar aumenta mas o ambiente não muda.</td></tr>
+          <tr><td class="td-num">17</td><td class="td-nome">Sala de recreação infantil</td><td>Brinquedos organizados com precisão cirúrgica. Sem uma marca de uso. Sem uma impressão digital.</td></tr>
+          <tr><td class="td-num">18</td><td class="td-nome">Corredor submerso (5cm de água)</td><td>Água limpa, parada, sem origem. Algo se moveu na água — a perturbação ainda está se dissipando.</td></tr>
+          <tr><td class="td-num">19</td><td class="td-nome">Sala de meditação ou capelo</td><td>Velas acesas. Calor presente. Alguém esteve aqui há minutos. Uma cadeira ainda está quente.</td></tr>
+          <tr><td class="td-num">20</td><td class="td-nome">Duas salas sobrepostas</td><td>O espaço contém dois ambientes simultaneamente. A percepção alterna dependendo de onde se foca o olhar.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 2-B · Conteúdo (1d12)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-amarelo">
+        <thead><tr><th>d12</th><th>Conteúdo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Evidência de presença recente</td><td>Comida consumida, fogo apagado há horas, roupa jogada. Alguém esteve aqui. Pode estar ouvindo agora.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">NPC sobrevivente — instável</td><td>Ainda fala, mas com lacunas. Repete frases. Suas memórias contradizem as dos personagens.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Gravação de áudio ou vídeo</td><td>Mostra este lugar mas com pessoas que os personagens não viram. Uma das pessoas parece um deles.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Acampamento abandonado às pressas</td><td>Tudo deixado com urgência. Comida na panela. Botas ao lado da cama. Sem sinal do ocupante.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Coleção de objetos organizados</td><td>Alguém coletou coisas dos Backrooms metodicamente. A coleção inclui objetos que os personagens perderam.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Sistema de comunicação improvisado</td><td>Rádio, fio tensor, espelhos para sinais. Funcionando. Do outro lado, alguém responde — mas as respostas têm delay impossível.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Mapa extenso e detalhado</td><td>Feito por alguém que passou muito tempo aqui. Inclui advertências em código. Leva tempo para decifrar.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Armadilha improvisada</td><td>Feita para deter algo específico — não humano. O design revela o que o criador enfrentou.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Suprimentos abundantes</td><td>Demais para um sobrevivente solitário. Alguém estava esperando um grupo grande. Ou ainda está.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Corpo — recente</td><td>Sem marca de violência visível. Expressão neutra. Bolsos virados. Algo foi removido com cuidado.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Sistema de notas na parede</td><td>Linha do tempo de uma sobrevivência. Inclui referências a criaturas — com apelidos, não nomes reais.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Objeto de referência cultural</td><td>Ver tabela de Itens de Referência. Role 1d20 naquela tabela.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 2-C · Anomalia (1d10)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-amarelo">
+        <thead><tr><th>d10</th><th>Anomalia</th><th>Efeito mecânico</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">O espaço responde à emoção</td><td>Quando o grupo está tenso, a sala fica mais quente. Quando em silêncio, mais fria. O lugar sente.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Memória involuntária</td><td>Um personagem (mestre escolhe) revive um momento específico de uma de suas linhas como alucinação breve. Perda de 1 de Orientação.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Duplicação de objeto</td><td>Algo que um personagem carrega aparece também na sala — idêntico, mas envelhecido décadas.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Saída que se fecha</td><td>O caminho por onde entraram desapareceu. Não bloqueado — simplesmente não existe mais.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Voz conhecida sem fonte</td><td>Um personagem ouve alguém que conhece do mundo real chamando seu nome. De longe. Cada vez mais perto.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Espelho comportamental</td><td>Superfícies reflexivas mostram o grupo fazendo algo diferente do que fazem. Com 3 segundos de atraso.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Gravidade preferencial</td><td>Objetos caem levemente na direção de um canto específico da sala. Nenhuma explicação física.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Linha do tempo comprimida</td><td>Quando saem, horas passaram. Para eles, foram minutos. Recursos consumidos proporcionalmente.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Escritura automática</td><td>Se alguém pegar algo para escrever e deixar a mão relaxada, ela escreve algo. Nem sempre compreensível.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Presença sentida, não vista</td><td>Todos sentem que não estão sozinhos. Nada é visto ou ouvido. Perda de 1d3 de Sanidade — puro instinto.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="sep">
+
+    <!-- ── NÍVEL 3 ── -->
+    <h2>Nível 3 — Hostil</h2>
+    <span class="nivel-badge nivel-vermelho">■ Encontro iminente</span>
+
+    <h3>Tabela 3-A · Tipo de Sala (1d20)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-vermelho">
+        <thead><tr><th>d20</th><th>Sala</th><th>Detalhe sensorial</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Corredor com iluminação pulsante</td><td>Ritmo de pulso humano — mas lento demais. Cada apagão: 3 segundos. O que estava lá antes volta diferente.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Sala de cirurgia improvisada</td><td>Instrumentos dispostos com precisão. Mesa com contenções. Anestesia local improvisada. Alguém praticou aqui.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Câmara de eco</td><td>Qualquer som retorna multiplicado e com atraso. Impossível saber de onde vem ameaça por som.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Sala de contenção improvisada</td><td>Grades de cama soladas, fios entrelaçados, marcas de que algo ficou aqui por muito tempo. E saiu.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Corredor com marcas de arranhão sistemático</td><td>Na altura da cintura. Regulares. Como se algo caminhasse sempre no mesmo trajeto, sempre tocando a parede.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Sala com espelhos em todas as superfícies</td><td>Teto, chão, paredes. Qualquer movimento se multiplica ao infinito. Impossível saber o que é reflexo.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Câmara de ventilação larga</td><td>Grande o suficiente para alguém passar. Sons orgânicos vêm de dentro. A grade está forçada de dentro para fora.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Sala de banquete podre</td><td>Mesa farta mas apodrecida. Cadeiras em posições de quem levantou subitamente. Há calor como de corpos recentes.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Corredor que encolhe</td><td>Cada vez mais estreito ao avançar. Impossível girar para trás após certo ponto. Algo à frente faz barulho.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Sala de isolamento acústico</td><td>Silêncio absoluto. Sem ecos. Os personagens só ouvem seus corpos. E os sons que não deveriam conseguir ouvir.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Galeria de arte com obras perturbadoras</td><td>Pinturas que retratam os personagens em situações que ainda não aconteceram. Ou que aconteceram sem testemunhas.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Sala de máquinas funcionando</td><td>Ninguém as ligou. Produzem algo impossível de identificar. Uma delas produz um som que parece nome.</td></tr>
+          <tr><td class="td-num">13</td><td class="td-nome">Corredor com luzes direcionais</td><td>Cada luz aponta para um lugar diferente. Seguir todas leva a lugares distintos. Uma delas pisca em código.</td></tr>
+          <tr><td class="td-num">14</td><td class="td-nome">Sala de processamento industrial</td><td>Esteiras paradas com material orgânico não identificável. Cheiro forte. Algo foi processado em quantidade.</td></tr>
+          <tr><td class="td-num">15</td><td class="td-nome">Quarto de criança abandonado</td><td>Brinquedos dispostos em círculo. Desenhos nas paredes — crianças desenhando seu cotidiano aqui. Recentes.</td></tr>
+          <tr><td class="td-num">16</td><td class="td-nome">Sala de observação com vidro espelhado</td><td>Do lado de fora não dá para ver o dentro. Do dentro, o fora é perfeitamente visível. Algo do lado de fora sabe disso.</td></tr>
+          <tr><td class="td-num">17</td><td class="td-nome">Espaço sem geometria fixa</td><td>As paredes mudam de posição durante a exploração — apenas quando ninguém olha diretamente para elas.</td></tr>
+          <tr><td class="td-num">18</td><td class="td-nome">Corredor inundado (joelho)</td><td>Água preta, opaca. Qualquer movimento cria ondas. Impossível saber o que tem embaixo sem mergulhar.</td></tr>
+          <tr><td class="td-num">19</td><td class="td-nome">Sala com única saída trancada</td><td>A chave existe — mas está com algo que está na sala. Que ainda está na sala. Que notou os personagens.</td></tr>
+          <tr><td class="td-num">20</td><td class="td-nome">A sala que não deveria existir</td><td>Não está em nenhum mapa. Não tem entrada lógica. Ela os escolheu. Role nas três outras tabelas e combine tudo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 3-B · Conteúdo (1d12)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-vermelho">
+        <thead><tr><th>d12</th><th>Conteúdo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Criatura presente — não percebeu o grupo</td><td>Role na tabela de Criaturas. Ela está ocupada. Com cuidado, é possível passar. Com qualquer barulho, não.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Criatura presente — os percebeu</td><td>Role na tabela de Criaturas. Ela sabe que estão lá. Ainda não agiu. Está avaliando.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Rastros frescos de criatura</td><td>Passagem recente. Menos de 30 minutos. Pode voltar pelo mesmo caminho. Ou pode estar esperando na saída.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Sobrevivente em estado crítico</td><td>Ainda consciente. Tem informação vital. Não pode andar. Os personagens precisam escolher.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Evidência de parasita</td><td>Um NPC encontrado antes age de forma sutilmente diferente. Não sabe que mudou. Ou sabe e está fingindo.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">A chave para avançar</td><td>Objeto que resolve um puzzle anterior — mas obtê-lo é o problema. Está em local perigoso.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Saída real para o próximo nível</td><td>Mas não parece segura. Algo a usa também. Em ambas as direções.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Ninho ou território marcado</td><td>Claramente habitado. A criatura não está — mas vai voltar. Quanto tempo os personagens têm?</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Doppelganger ativo</td><td>Uma cópia perfeita de um dos personagens. Está aqui antes deles. Olha para si mesmo com curiosidade.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Suprimentos cruciais — mas armadilhados</td><td>O que precisam está aqui. Mas está claramente disposto como isca. Por quê alguém faria isso?</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Corpo com evidência de transformação</td><td>Alguém que foi encontrado antes — ou que poderia ter sido um dos personagens. O que aconteceu com ele está acontecendo lentamente com eles.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Vazio total</td><td>Nada. A ameaça é a sala em si. Cada minuto aqui custa 1 de Orientação.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Tabela 3-C · Anomalia (1d10)</h3>
+    <div class="tabela-wrap">
+      <table class="tabela-vermelho">
+        <thead><tr><th>d10</th><th>Anomalia</th><th>Efeito mecânico</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Atração gravitacional central</td><td>Todos os objetos soltos se movem lentamente para o centro da sala. Incluindo os personagens se pararem.</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Escuridão progressiva</td><td>Fontes de luz enfraquecem gradualmente. Em 10 minutos, escuridão total. O que está na sala sabe disso.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Memória suprimida</td><td>Dentro da sala, os personagens não conseguem lembrar como entraram. Ao sair, lembram — mas perderam 1 linha cada.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Duplicação de som</td><td>Cada som feito pelo grupo é repetido exatamente 8 segundos depois. Por algo que não é eles.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Saídas reconfiguradas</td><td>A cada 5 minutos, as saídas mudam de posição. Ficar parado não é opção.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Reconhecimento mútuo</td><td>A criatura na sala reconhece um personagem específico. Não ataca esse personagem. Por quê?</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Campo de estranhamento</td><td>Dentro da sala, os personagens têm dificuldade em confiar uns nos outros. -20% em todas as rolagens sociais.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Tempo em loop curto</td><td>Os últimos 90 segundos se repetem — apenas para um personagem. Os outros não percebem.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Instinto animal ativado</td><td>Todos sentem a necessidade primária de se abaixar, se calar, não piscar. Sem saber por quê.</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">A sala os conhece</td><td>Elementos da sala refletem memórias dos personagens — objetos, imagens, cheiros. Perda de 1d6 Sanidade.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- CRIATURAS & ALIADOS -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="criaturas">
+    <h1>Criaturas & Aliados</h1>
+    <p class="subtitulo-secao">Tabela de geração · Comportamento · Nunca combate frontal</p>
+
+    <div class="caixa caixa-alerta">
+      <div class="caixa-titulo">Princípio de design das criaturas</div>
+      <ul>
+        <li>Criaturas não são inimigos de combate — são <strong>problemas relacionais, ambientais ou psicológicos</strong>.</li>
+        <li>A pergunta nunca é "como eu mato isso". É "como eu passo por isso", "como eu escondo isso" ou "o que isso quer".</li>
+        <li>Nunca descreva uma criatura com detalhes completos. Use a Regra do Farol: deixe a imaginação trabalhar.</li>
+        <li>A perda de Sanidade vem do que a criatura <em>implica</em>, não do que ela faz.</li>
+      </ul>
+    </div>
+
+    <h3>Tabela de Criaturas (1d12)</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>d12</th><th>Criatura</th><th>Comportamento</th><th>Como evitar</th><th>Sanidade</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="td-num">1</td>
+            <td class="td-nome">Doppelganger</td>
+            <td>Observa antes de agir. Aprende comportamentos. Nunca ataca o original — substitui. Pode conviver com o grupo por sessões.</td>
+            <td>Teste social: cada personagem deve responder algo que só ele saberia. O doppelganger hesita 1 segundo.</td>
+            <td>1d6 ao ver / 1d10 ao confirmar que está no grupo</td>
+          </tr>
+          <tr>
+            <td class="td-num">2</td>
+            <td class="td-nome">Skinwalker</td>
+            <td>Imita sons, vozes, passos. Prefere operar no escuro ou em movimento. Nunca imita alguém vivo que ainda está presente.</td>
+            <td>Luz contínua. Ficarem juntos — ele não consegue imitar dois ao mesmo tempo. Silêncio forçado.</td>
+            <td>1d4 ao ouvir / 2d6 ao ver a forma</td>
+          </tr>
+          <tr>
+            <td class="td-num">3</td>
+            <td class="td-nome">Hospedeiro Parasitado</td>
+            <td>Age quase normalmente. Pequenos desvios: preferências invertidas, microexpressões erradas, memórias levemente deslocadas. O parasita tem objetivos próprios.</td>
+            <td>Observação prolongada (teste de Psicologia). Perguntas sobre memórias específicas. O hospedeiro não sabe que mudou.</td>
+            <td>0 sem suspeita / 1d8 ao confirmar</td>
+          </tr>
+          <tr>
+            <td class="td-num">4</td>
+            <td class="td-nome">Smiler</td>
+            <td>Permanece no escuro ou em luz baixa. Sorriso bioluminescente. Não ataca quem mantém contato visual. Segue a grupos a distância.</td>
+            <td>Nunca virar as costas. Recuar devagar. Luz forte os paralisa brevemente.</td>
+            <td>1d6 ao avistar / 1d8 se perder contato visual</td>
+          </tr>
+          <tr>
+            <td class="td-num">5</td>
+            <td class="td-nome">Hound of Tindalos (adaptado)</td>
+            <td>Persegue por cantos e ângulos agudos. Corredores retos os confundem. Som de unhas em concreto.</td>
+            <td>Ficar em espaços circulares ou sem cantos agudos. Cantos de 90° os atraem.</td>
+            <td>1d4 ao ouvir / 2d8 ao ver</td>
+          </tr>
+          <tr>
+            <td class="td-num">6</td>
+            <td class="td-nome">A Figura no Fim do Corredor</td>
+            <td>Forma humana distante. Nunca se aproxima enquanto observada. Se alguém pisca ou desvia o olhar, avançou. Sempre avançou.</td>
+            <td>Nunca piscar. Recuar sem perder contato visual. Se chegou perto o suficiente para detalhe: correr.</td>
+            <td>1d3 ao ver / 1d10 ao perceber que avançou sem ser visto</td>
+          </tr>
+          <tr>
+            <td class="td-num">7</td>
+            <td class="td-nome">Pareidolia Viva</td>
+            <td>Existe apenas na visão periférica. Toma forma de rosto humano em qualquer textura. Ao ser observado diretamente, some — mas mudou de posição.</td>
+            <td>Fechar os olhos e se mover por tato. Luz direta e intensa reduz o fenômeno.</td>
+            <td>1d3 acumulativo por cena / 2d6 ao ver um rosto reconhecível</td>
+          </tr>
+          <tr>
+            <td class="td-num">8</td>
+            <td class="td-nome">Criança Perdida (NPC ambíguo)</td>
+            <td>Pode ser humana — criança real perdida nos Backrooms. Pode ser isca. Pode ser doppelganger de criança. Os personagens não sabem. Pede ajuda com urgência convincente.</td>
+            <td>Não há como "evitar" — a ameaça é moral, não física. Ajudar ou não é o dilema.</td>
+            <td>0 ao encontrar / variável conforme decisão dos personagens</td>
+          </tr>
+          <tr>
+            <td class="td-num">9</td>
+            <td class="td-nome">Entidade Territorial</td>
+            <td>Não ataca quem não invade seu espaço. Demarca território com padrões repetitivos. Se perturbada, escala sistematicamente: aviso → demonstração → ação.</td>
+            <td>Respeitar as marcas. Oferecer algo (objeto, som específico). Recuar completamente.</td>
+            <td>1d4 ao perceber o território / 2d6 ao ver a entidade</td>
+          </tr>
+          <tr>
+            <td class="td-num">10</td>
+            <td class="td-nome">Colecionador</td>
+            <td>Humanoide que sobrevive há muito tempo coletando objetos dos que passam. Inteligente. Pode negociar. Tem informação. O preço é sempre um objeto com valor emocional.</td>
+            <td>Negociação direta. Tem código de honra — não ataca quem negocia de boa fé. Trai quem mente.</td>
+            <td>1d4 ao ver / 0 em negociação bem-sucedida</td>
+          </tr>
+          <tr>
+            <td class="td-num">11</td>
+            <td class="td-nome">A Sombra Correta</td>
+            <td>Sombra de um dos personagens que age independentemente — mas apenas quando o personagem não está olhando para ela. Gradualmente diverge do comportamento original.</td>
+            <td>Não há evasão — ela pertence ao personagem. Pode ser "reintegrada" através de ritual específico descoberto em puzzle.</td>
+            <td>1d3 ao notar divergência / 1d8 ao ver a sombra agir ativamente</td>
+          </tr>
+          <tr>
+            <td class="td-num">12</td>
+            <td class="td-nome">O Que Não Tem Nome</td>
+            <td>Incompreensível. Não predatório por natureza — simplesmente incompatível com cognição humana. Sua presença é percebida como ausência: silêncio, frio, vazio.</td>
+            <td>Não há evasão — é uma condição. Sair da sala é a única opção. Cada minuto: 1d3 de Sanidade.</td>
+            <td>1d6/min de presença</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="sep">
+
+    <h2>Aliados & NPCs</h2>
+    <h3>Tabela de NPCs Sobreviventes (1d8)</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>d8</th><th>NPC</th><th>Estado</th><th>O que oferece</th><th>O que esconde</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">O Cartógrafo</td><td>Lúcido mas obcecado. Não para de mapear. Não dorme.</td><td>Mapa extenso e parcialmente correto</td><td>Sabe da saída mas acredita que sair é impossível — e não quer que o grupo tente</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">A Criança</td><td>Calma demais para a situação. Faz perguntas que não deveria saber fazer.</td><td>Conhece rotas seguras intuitivamente</td><td>Ambíguo — ver Criatura 8. Pode ser real ou não.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">O Veterano</td><td>Caiu há anos. Adaptado demais. Não quer sair — isso o torna valioso e perigoso.</td><td>Conhecimento profundo das regras do espaço</td><td>Fez coisas para sobreviver que o grupo não aprovaria</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">A Médica</td><td>Funcional, pragmática, negacionista. Ainda acredita que há explicação racional.</td><td>Cuidados médicos, estabilidade emocional do grupo</td><td>Está com sintomas de parasita — ainda não percebeu</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">O Arrependido</td><td>Traiu outro grupo para sobreviver. Carrega culpa paralisante. Quer redenção.</td><td>Informação sobre o que há adiante — esteve lá</td><td>O grupo que traiu pode ainda estar aqui. E saber quem ele é.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">A Silenciosa</td><td>Não fala. Comunica por escrita ou gestos. Causa desconforto constante.</td><td>Observação excepcional — nota coisas que o grupo perde</td><td>Sabe do doppelganger no grupo. Está tentando comunicar sem alertar o doppelganger.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">O Que Aceitou</td><td>Orientação zero. Não quer sair. Completamente funcional mas sem motivação para além do espaço.</td><td>Nenhum — mas é espelho do que os personagens podem se tornar</td><td>Era igual a eles. Chegou ontem.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">O Pesquisador</td><td>Caiu de propósito. Estava estudando espaços liminares. Tem teorias. Algumas corretas.</td><td>Contexto teórico, hipóteses sobre saída</td><td>Seus experimentos podem ter criado algumas das criaturas presentes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- ITENS DE REFERÊNCIA -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="itens">
+    <h1>Itens de Referência Cultural</h1>
+    <p class="subtitulo-secao">Jogos · Filmes · Mídia liminal · Backrooms canônico</p>
+
+    <p>Esses itens são easter eggs para jogadores que conhecem a cultura dos Backrooms e espaços liminares. Use com parcimônia — um por sessão no máximo. Cada item tem uma função mecânica além da referência.</p>
+
+    <h3>Tabela de Itens (1d20)</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>d20</th><th>Item</th><th>Referência</th><th>Função mecânica</th></tr></thead>
+        <tbody>
+          <tr><td class="td-num">1</td><td class="td-nome">Fita VHS rotulada "NÃO ASSISTIR"</td><td>Atmosfera geral de found footage liminal / analog horror</td><td>Contém gravação de uma sala que os personagens ainda não encontraram. Assistir: -1d3 Sanidade, +informação crucial</td></tr>
+          <tr><td class="td-num">2</td><td class="td-nome">Walkie-talkie modelo antigo na frequência 14.0</td><td>Backrooms canônico — frequência usada por sobreviventes</td><td>Capta respostas de outros sobreviventes. Nem todas as vozes são de pessoas vivas.</td></tr>
+          <tr><td class="td-num">3</td><td class="td-nome">Garrafa de Almond Water com rótulo artesanal</td><td>Backrooms canônico — fluido recuperador do Level 0</td><td>Restaura 1d6 de Orientação. Sabor impossível de descrever. Quem bebe sente que o espaço os aceitou um pouco mais.</td></tr>
+          <tr><td class="td-num">4</td><td class="td-nome">Câmera fotográfica descartável com fotos reveladas</td><td>Found footage / analog horror (Local 58, Gemini Home Entertainment)</td><td>As fotos mostram coisas que não foram fotografadas. Em algumas, há figuras que ninguém viu.</td></tr>
+          <tr><td class="td-num">5</td><td class="td-nome">Manual de instruções de jogo sem nome</td><td>Referência ao horror de jogos abandonados (Yume Nikki, Ao Oni)</td><td>As regras do "jogo" descrito são as regras reais do espaço. Entendê-las dá +20% em rolagens de exploração.</td></tr>
+          <tr><td class="td-num">6</td><td class="td-nome">Fita cassete com música ambiente sem artista</td><td>Liminal music / muzak de espaços vazios</td><td>Reproduzida, mantém criaturas auditivas à distância por 1 hora. A bateria do reprodutor dura exatamente o necessário.</td></tr>
+          <tr><td class="td-num">7</td><td class="td-nome">Caderno com o logo do M.E.G.</td><td>Major Explorer Group — organização canônica dos Backrooms</td><td>Contém protocolos de sobrevivência. Alguns já desatualizados. Um nome no caderno é reconhecível.</td></tr>
+          <tr><td class="td-num">8</td><td class="td-nome">Porta com placa "The Exit" — trancada</td><td>Backrooms canônico / humor dark da comunidade</td><td>A chave existe em outro lugar. Quando aberta, leva ao Level 0 de outro ciclo — começo, não fim.</td></tr>
+          <tr><td class="td-num">9</td><td class="td-nome">Console portátil com único jogo instalado</td><td>Referência a jogos de horror liminal (Yume Nikki, Dreamcore games)</td><td>O jogo mapeia os Backrooms em tempo real. Mas quem controlou o personagem antes de encontrarem o console?</td></tr>
+          <tr><td class="td-num">10</td><td class="td-nome">Foto polaroid de uma sala que parece normal demais</td><td>Estética core dos Backrooms originais — a primeira foto</td><td>A sala na foto existe. Encontrá-la custa tempo, mas é completamente segura. A única sala completamente segura.</td></tr>
+          <tr><td class="td-num">11</td><td class="td-nome">Mapa do Level Fun — colorido, infantil</td><td>Backrooms Level ! — sala de circo perturbadora</td><td>Guia para um corredor que parece festa infantil. Onde há música alta de circo. Não é o Level Fun. Mas algo o imita.</td></tr>
+          <tr><td class="td-num">12</td><td class="td-nome">Frasco rotulado "Liquid Pain"</td><td>Backrooms canônico — objeto raro e valioso</td><td>Usado como moeda de troca com o Colecionador (Criatura 10). Valor: qualquer informação que o Colecionador tenha.</td></tr>
+          <tr><td class="td-num">13</td><td class="td-nome">Televisão CRT ligada em The Shining</td><td>Referência ao hotel Overlook como arquétipo de espaço liminar hostil</td><td>Quando alguém fica sozinho na sala por mais de 5 minutos, o filme muda. Mostra cenas deste grupo neste lugar.</td></tr>
+          <tr><td class="td-num">14</td><td class="td-nome">Boneco de pano com etiqueta manuscrita</td><td>Referência a objetos de horror analógico e creepypasta</td><td>Quem carregar o boneco não perde Orientação nesta sessão. Mas na próxima, o boneco está em outro lugar — e alguém o carregou.</td></tr>
+          <tr><td class="td-num">15</td><td class="td-nome">Notepad com anotações de SCP-3008</td><td>SCP-3008 — IKEA infinita, espaço liminar icônico</td><td>Protocolos de sobrevivência de outro espaço infinito. Parte se aplica aqui. Parte é perigosamente errada.</td></tr>
+          <tr><td class="td-num">16</td><td class="td-nome">Cartão de acesso para "Nível Seguro"</td><td>Estética corporate liminal / SCP Foundation</td><td>Funciona em uma porta encontrada posteriormente. O "Nível Seguro" tem um problema diferente.</td></tr>
+          <tr><td class="td-num">17</td><td class="td-nome">Livro "Como Sair" — páginas em branco</td><td>Metacomentário sobre a natureza dos Backrooms</td><td>Lido com luz ultravioleta (encontrada separadamente), revela instruções. Funcionam — mas apenas para uma pessoa.</td></tr>
+          <tr><td class="td-num">18</td><td class="td-nome">Planta de arquitetura rotulada "Projeto Liminar"</td><td>Referência ao conceito arquitetônico de espaços liminares de Marc Augé</td><td>Planta de uma versão anterior dos Backrooms. Algumas rotas ainda existem. Algumas levam a onde essas rotas foram.</td></tr>
+          <tr><td class="td-num">19</td><td class="td-nome">Crachá de funcionário com foto de um dos personagens</td><td>Estética de amnésia e identidade duplicada — referência a Dark, Severance</td><td>O crachá tem nome diferente do personagem. A data de admissão é de três anos atrás. O cargo: "Orientador".</td></tr>
+          <tr><td class="td-num">20</td><td class="td-nome">Espelho de mão com reflexo atrasado</td><td>Referência ao tropo de espelhos em horror psicológico (Oculus, Black Mirror)</td><td>Mostra o estado real do personagem — não o estado que ele acredita ter. Pode revelar parasita ou doppelganger.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- MEMÓRIAS FALSAS — RESUMO -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="memorias">
+    <h1>Sistema de Memórias — Resumo Operacional</h1>
+    <p class="subtitulo-secao">As cinco linhas · Gatilhos · Tipos de substituição</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-titulo">Esquecimento</div>
+        <p>A linha some. Sem substituição. O personagem simplesmente não tem mais aquela memória.</p>
+        <p style="color:var(--texto-dim); font-size:14px">Quando usar: quando a perda silenciosa é mais impactante que a confusão.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Memória Falsa</div>
+        <p>Envelope com versão levemente errada da memória. O jogador sabe — o personagem não.</p>
+        <p style="color:var(--texto-dim); font-size:14px">Quando usar: quando quer confusão identitária ativa e roleplay de dissonância.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Transferência</div>
+        <p>A linha apagada de um personagem aparece na ficha de outro como memória própria.</p>
+        <p style="color:var(--texto-dim); font-size:14px">Quando usar: quando quer drama interpessoal e paranoia sobre identidade.</p>
+      </div>
+    </div>
+
+    <h3>Gatilhos de perda de linha</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Gatilho</th><th>Quem escolhe</th><th>Envelope?</th><th>Timing</th></tr></thead>
+        <tbody>
+          <tr><td>Falha crítica de Sanidade (5+ pontos)</td><td>Jogador</td><td>Sim, imediatamente</td><td>Na cena</td></tr>
+          <tr><td>Roll de fim de sessão (1d6, resultado 1)</td><td>Mestre</td><td>Início da próxima sessão</td><td>Entre sessões</td></tr>
+          <tr><td>Objeto encontrado (Tabela B resultado 11)</td><td>Mestre</td><td>Sim, imediatamente</td><td>Na cena</td></tr>
+          <tr><td>Sala Nível 3, anomalia C3 (Memória suprimida)</td><td>Mestre</td><td>Sim, ao sair da sala</td><td>Na cena</td></tr>
+          <tr><td>Decisão narrativa de alto impacto</td><td>Mestre</td><td>Opcional</td><td>Na cena</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="caixa caixa-alerta">
+      <div class="caixa-titulo">Regra de ouro</div>
+      <ul>
+        <li>Máximo de <strong>um envelope por cena</strong>. O impacto precisa de espaço para respirar.</li>
+        <li>Quando a última linha cai, role Sanidade 1d6 imediatamente.</li>
+        <li>Personagem sem linhas não é inútil — é o espelho do que todos podem se tornar.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- INTEGRAÇÃO POR SESSÃO -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="sessoes">
+    <h1>Integração por Sessão</h1>
+    <p class="subtitulo-secao">O que usar em cada momento · Tabelas recomendadas · Gatilhos de envelope</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-num">SESSÃO 1</div>
+        <div class="timeline-titulo">O Carpete Amarelo</div>
+        <div class="timeline-desc">Exploração. Estabelecimento. Nenhuma criatura visível. Nível 1 exclusivamente.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">SESSÃO 2</div>
+        <div class="timeline-titulo">Você estava aqui ontem?</div>
+        <div class="timeline-desc">Paranoia. Doppelganger introduzido como suspeita. Níveis 1 e 2.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">SESSÃO 3</div>
+        <div class="timeline-titulo">A Lógica do Lugar</div>
+        <div class="timeline-desc">Revelações. Puzzle central. Entidade vista pela primeira vez. Níveis 2 e 3.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-num">SESSÃO 4</div>
+        <div class="timeline-titulo">Nenhum de nós saiu</div>
+        <div class="timeline-desc">Convergência. Escolha. As três mecânicas juntas. Nível 3 dominante.</div>
+      </div>
+    </div>
+
+    <h2>Sessão 1 — O Carpete Amarelo</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-titulo">Tabelas recomendadas</div>
+        <p>Use exclusivamente <strong>Nível 1</strong>. Role 3 salas antes da sessão. Use no máximo 2.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Memórias</div>
+        <p>Não use envelopes. Peça roleplay de 1 linha de cada personagem no shopping antes da queda.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Fim da sessão</div>
+        <p>Roll 1d6. Com resultado 1: apague 1 linha silenciosamente. Anuncie no início da sessão 2.</p>
+      </div>
+    </div>
+
+    <h2>Sessão 2 — Você estava aqui ontem?</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-titulo">Tabelas recomendadas</div>
+        <p><strong>Níveis 1 e 2.</strong> Role 4 salas. A sala de segurança com câmeras é ideal para a abertura.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Doppelganger</div>
+        <p>Entregue os papéis no início. 3 dizem "você é quem pensa". 1 diz que algo mudou. Pode não ter nenhum real.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Memórias</div>
+        <p>Primeiro uso de envelope. Gatilho ideal: Tabela B resultado 11 (objeto do personagem encontrado).</p>
+      </div>
+    </div>
+
+    <h2>Sessão 3 — A Lógica do Lugar</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-titulo">Tabelas recomendadas</div>
+        <p><strong>Níveis 2 e 3.</strong> Introduza a primeira sala Nível 3 no segundo terço da sessão.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Criatura</div>
+        <p>A Figura no Fim do Corredor (Criatura 6) para a aparição central. Sem ataque — só visão.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Memórias — Transferência</div>
+        <p>Momento ideal para a mecânica de transferência. Use linhas com pessoas (irmã, sobrinho, mãe).</p>
+      </div>
+    </div>
+
+    <h2>Sessão 4 — Nenhum de nós saiu</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-titulo">Tabelas</div>
+        <p>Nível 3 dominante. Reuse salas anteriores — mais limpas, mais quietas. O espaço não guarda memória deles.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Doppelganger — resolução</td>
+        <p>A figura sentada de costas na praça. Revele (ou não) o resultado dos papéis da sessão 2.</p>
+      </div>
+      <div class="card">
+        <div class="card-titulo">Envelopes finais</div>
+        <p>Reserve a última linha de cada personagem para após a escolha final. A perda é consequência da decisão.</p>
+      </div>
+    </div>
+
+    <h2>Os três finais possíveis</h2>
+    <div class="caixa caixa-safe">
+      <div class="caixa-titulo">Sair sozinhos</div>
+      <ul>
+        <li>Existe saída — comporta apenas uma pessoa. Quem vai?</li>
+        <li>Quem sai, lê em voz alta as linhas que restam. Cada linha é uma coisa que ainda lembra.</li>
+        <li>O grupo assiste. Depois decide quem é o próximo.</li>
+      </ul>
+    </div>
+    <div class="caixa caixa-alerta">
+      <div class="caixa-titulo">Entender o espaço</div>
+      <ul>
+        <li>O lugar é responsivo — pode ser convencido, não vencido.</li>
+        <li>Exige que alguém fique permanentemente. Não morre — só fica.</li>
+        <li>Quem fica escolhe. Ninguém pode escolher por outro.</li>
+      </ul>
+    </div>
+    <div class="caixa caixa-perigo">
+      <div class="caixa-titulo">Não sair</div>
+      <ul>
+        <li>Orientação zero. Alguns personagens já não querem ir embora.</li>
+        <li>Isso não é tragédia — é escolha. Não julgue os personagens que ficam.</li>
+        <li>A câmera narrativa fica nos que ficaram. O carpete amarelo. O zumbido das luzes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════ -->
+  <!-- CONTROLE DO MESTRE -->
+  <!-- ══════════════════════════════════════════════════════ -->
+  <div class="secao" id="controle">
+    <h1>Tabela de Controle</h1>
+    <p class="subtitulo-secao">Acompanhe o estado das fichas e recursos ao longo da campanha</p>
+
+    <h3>Estado dos personagens</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Personagem</th><th>Linhas ativas</th><th>Envelopes usados</th><th>Orientação</th><th>Sanidade</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td class="td-nome">Personagem 1</td><td>☐ ☐ ☐ ☐ ☐</td><td>☐ ☐ ☐ ☐ ☐</td><td>/100</td><td>/100</td><td></td></tr>
+          <tr><td class="td-nome">Personagem 2</td><td>☐ ☐ ☐ ☐ ☐</td><td>☐ ☐ ☐ ☐ ☐</td><td>/100</td><td>/100</td><td></td></tr>
+          <tr><td class="td-nome">Personagem 3</td><td>☐ ☐ ☐ ☐ ☐</td><td>☐ ☐ ☐ ☐ ☐</td><td>/100</td><td>/100</td><td></td></tr>
+          <tr><td class="td-nome">Personagem 4</td><td>☐ ☐ ☐ ☐ ☐</td><td>☐ ☐ ☐ ☐ ☐</td><td>/100</td><td>/100</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Registro de sessões</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>Sessão</th><th>Nível(s) usado(s)</th><th>Salas geradas (A-B-C)</th><th>Criaturas encontradas</th><th>Itens de referência</th><th>Envelopes</th><th>Roll fim (1d6)</th></tr></thead>
+        <tbody>
+          <tr><td class="td-nome">Sessão 1</td><td>1</td><td></td><td>—</td><td></td><td>—</td><td></td></tr>
+          <tr><td class="td-nome">Sessão 2</td><td>1 + 2</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="td-nome">Sessão 3</td><td>2 + 3</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td class="td-nome">Sessão 4</td><td>3</td><td></td><td></td><td></td><td></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>NPCs ativos</h3>
+    <div class="tabela-wrap">
+      <table>
+        <thead><tr><th>NPC</th><th>Status</th><th>Localização</th><th>Confia no grupo?</th><th>Notas</th></tr></thead>
+        <tbody>
+          <tr><td></td><td>☐ Vivo ☐ Morto ☐ Desaparecido ☐ Comprometido</td><td></td><td>☐ Sim ☐ Não ☐ Parcial</td><td></td></tr>
+          <tr><td></td><td>☐ Vivo ☐ Morto ☐ Desaparecido ☐ Comprometido</td><td></td><td>☐ Sim ☐ Não ☐ Parcial</td><td></td></tr>
+          <tr><td></td><td>☐ Vivo ☐ Morto ☐ Desaparecido ☐ Comprometido</td><td></td><td>☐ Sim ☐ Não ☐ Parcial</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align:center; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--borda);">
+      <div style="font-family:'Special Elite',serif; font-size:20px; color:var(--amarelo-dim); letter-spacing:0.06em;">
+        O carpete amarelo. O zumbido das luzes. Alguém ficou.
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</body>
+</html>
